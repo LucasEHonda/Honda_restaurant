@@ -46,17 +46,18 @@ class RecipeViewSet(viewsets.ModelViewSet):
     serializer_class = RecipeSerializer
     renderer_classes = [JSONRenderer]
     filter_backends = [SearchFilter]
-    search_fields = ['name','ingredients','prepationMode','prepationTime','cooker__name']
+    
+    search_fields = ['name','ingredients','prepationMode','prepationTime','cooker__name'] #Atributos que o query param vai usar no 'search'
 
-    query_params = ['name','ingredients','prepartionMode','prepationTime','cookerName']
+    query_params = ['name','ingredients','prepartionMode','prepationTime','cookerName'] #Query params que existe na rota '/recipe/'
     
 
     def get_queryset(self):
-        queryset_list = Recipe.objects.all()
-        querys = [(query_param, self.request.GET.get(query_param)) for query_param in self.query_params if self.request.GET.get(query_param)]
-        if querys:
-            query = querys[0][1]
-            if querys[0][0] == 'name':
+        queryset_list = Recipe.objects.all() #lista com todas as receitas
+        querys = [(query_param, self.request.GET.get(query_param)) for query_param in self.query_params if self.request.GET.get(query_param)]#Verifica se o usuario esta buscando por alguma query especifica. Caso sim retorna uma lista de tupla com essa query e o  seu respectivo parametro.
+        if querys: #se existir um query ele vai procurar pelo parametro que foi passado se nao ele retorna a lista com todos os parametros.
+            query = querys[0][1] #sempre vai ter apenas 1 elemento nessa lista e queremos acessar o parametro passado na query.
+            if querys[0][0] == 'name':#verifica qual query foi usada e procura no seu respectivo atributo se existe o parametro que foi passado.
                 queryset_list = queryset_list.filter(
                     Q(name__icontains=query)                
                 ).distinct()
