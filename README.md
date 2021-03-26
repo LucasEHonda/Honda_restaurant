@@ -11,9 +11,7 @@ Na pasta /honda_restaurant rode o seguinte comando para rodar a aplicação:
  */recipe/?name=*
  
  */recipe/?ingredients=*
- 
- */recipe/?prepationMode=*
- 
+  
  */recipe/?prepationTime=*
  
  */recipe/?cookerName=*
