@@ -1,5 +1,5 @@
  # Honda_restaurant
- In this repository I created an API rest with Django for Honda's restaurant.
+ Neste repositório criei um API rest com Django para o restaurante Honda.
 
 ### Como rodar.
 Na pasta /honda_restaurant rode o seguinte comando para rodar a aplicação:
